@@ -4,11 +4,15 @@ import PropTypes from 'prop-types';
 function formatDescription(description: string){
     return description.substring(0,60) + '...';
 }
+interface ProjectCardProps {
+    project: Project;
+    onEdit: (project: Project) => void;
+}
 
-function ProjectCard(props: { project: any; }) {
-    const {project} = props;
+function ProjectCard(props: ProjectCardProps) {
+    const {project, onEdit} = props;
     const handleEditClick = (projectBeingEdited: any) => {
-        console.log('Editing project:', projectBeingEdited);
+        onEdit(projectBeingEdited);
     };
     return(
         <div className='card'>
