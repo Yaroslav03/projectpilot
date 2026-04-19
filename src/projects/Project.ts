@@ -1,4 +1,9 @@
+import type { JSX } from "react/jsx-runtime";
+
 export class Project {
+    static map(arg0: (project: any) => JSX.Element) {
+      throw new Error('Method not implemented.');
+    }
     id: number | undefined;
     name: string = "";
     description: string = "";
