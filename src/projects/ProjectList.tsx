@@ -1,5 +1,5 @@
-
-import React, { useState } from 'react';
+import { useState } from 'react';
+//import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Project } from './Project';
 import ProjectCard from './ProjectCard';
@@ -7,12 +7,13 @@ import ProjectForm from './ProjectForm';
 
 interface ProjectListProps {
   projects: Project[];
+  onSave: (project: Project) => void;
 }
 ProjectList.propTypes = {
   projects: PropTypes.arrayOf(PropTypes.instanceOf(Project)).isRequired
 };
 
- function ProjectList ({ projects }: ProjectListProps) {
+ function ProjectList ({ projects, onSave }: ProjectListProps) {
   const [projectBeingEdited, setProjectBeingEdited] = useState({});
 
    const handleEdit = (project: Project) => {
@@ -26,7 +27,7 @@ ProjectList.propTypes = {
       {projects.map((project) => (
         <div key={project.id} className="cols-sm">
           {project === projectBeingEdited ? (
-            <ProjectForm onCancel={cancelEditing} />
+            <ProjectForm onCancel={cancelEditing} onSave={onSave} />
           ) : (
             <ProjectCard project={project} onEdit={handleEdit} />
           )}
